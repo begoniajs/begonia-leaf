@@ -1,5 +1,6 @@
+//===========================================================
 /**
- * 观察者管理
+ * @description 观察者管理
  * @version 0.2.0
  * @author Brave Chan on 2017.12
  */
@@ -35,7 +36,7 @@ let _store;     //redux store
 
 //解除订阅state变化的函数
 let unsubscribeStateUpadte;
-//===========================================
+//===========================================================
 /**
  * @private
  * 订阅state树变动
@@ -181,7 +182,7 @@ function enqueueUpdate(propName, watcherList, updateList) {
   updateList[updateList.length] = propName;
   return true;
 }
-//===========================================
+//===========================================================
 //初始化标识
 let initialized = false;
 
@@ -193,14 +194,14 @@ let initialized = false;
  *
  * @return { {vmo_id$:String,update:Function} }
  *
- * ```
+ *
  * <code>
  * {
  *    vmo_id$:vmpId,    //用于调取vmp，然后应用属性值
  *    update:updateFn,  //fn，用于在最后提交到vmp进行处理前，进行更新的回调。this值，应该页面或组件的this
  * }
  * </code>
- * ```
+ *
  */
 function be_watcherify(vmpId, updateFn) {
   let watcher = {};
@@ -468,3 +469,4 @@ export default {
     initialized = false;
   }
 };
+//===========================================================

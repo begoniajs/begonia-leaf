@@ -1,3 +1,10 @@
+//===================================================
+/**
+ * @description 工具函数集合
+ * @author Brave Chan
+ * @version 1.0.0
+ */
+//===================================================
 /**
  * 自增数字生成器
  * @param {*} start
@@ -35,5 +42,6 @@ function isNothing(value) {
 function isFunction(value) {
   return typeof value === 'function';
 }
-
+//===================================================
 export { autoincrement, isANothing, isNothing, isObject, isFunction };
+//===================================================

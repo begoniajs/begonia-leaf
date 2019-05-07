@@ -1,8 +1,7 @@
+//===================================================
 /**
- * begoina redux-lite (bex)
- *
- * 提供bex的入口和基本功能
- * @version 1.2.0
+ * @description begoina redux-lite (bex) 提供bex的入口和基本功能
+ * @version 1.0.0
  * @author Brave Chan on 2019.5
  */
 //===================================================
@@ -34,12 +33,12 @@ let stateObserverList = {};
 /**
  * @private
  * @description 执行创建store实例
- * @param {Object} state 根级state
- * @param {Function} reducer 根级reducer函数
- * @param {Object} actions
- * @param {Object} getters
+ * @param {Object} state [required] 根级state
+ * @param {Function} reducer [required] 根级reducer函数
+ * @param {Object} actions [required] action函数集合
+ * @param {Object} getters [required] getter函数集合
  *
- * @return {Object}
+ * @return {Object} store实例
  */
 function doCreateStore(state, reducer, actions, getters) {
   let store = Redux.createStore(reducer, state);
@@ -156,8 +155,8 @@ function createGetters(branch, getters) {
  * @private
  *
  * @description 加工可观察分支
- * @param {Object} observableState 可观察的state分支
- * @param {Object} waitFreeStates 等待释放的state集合
+ * @param {Object} observableState  [required] 可观察的state分支
+ * @param {Object} waitFreeStates  [required] 等待释放的state集合
  * @returns {Object} observableState 可观察的state分支
  */
 function handleObservableBranch(observableState, value, waitFreeStates) {
@@ -171,9 +170,9 @@ function handleObservableBranch(observableState, value, waitFreeStates) {
  * @description 定义可被观察的state分支和属性
  * 如果state中的属性被某个getter时候，将会产生绑定关系
  * 当state中的分支更新时，将会影响到getter的再次调用
- * @param {Object} branchState state分支对象
- * @param {String} getterName 属性名称
- * @param {String} branch 分支名称
+ * @param {Object} branchState  [required] state分支对象
+ * @param {String} getterName  [required] 属性名称
+ * @param {String} branch  [required] 分支名称
  */
 function defineObservableBranch(branchState, getterName, branch) {
   let props = {};
@@ -197,7 +196,7 @@ function defineObservableBranch(branchState, getterName, branch) {
  * @description 释放可被观察的state分支及其属性
  * 当getter已经与state中的属性建立响应关系时，
  * 可以释放被观察的state分支
- * @param {String} oStateName 可观察state分支对象名称
+ * @param {String} oStateName  [required] 可观察state分支对象名称
  */
 function freeObservableBranch(oStateName, waitFreeStates) {
   let observableState = waitFreeStates[oStateName];
@@ -219,8 +218,8 @@ function freeObservableBranch(oStateName, waitFreeStates) {
 /**
  * @private
  * @description 添加对某个state分支属性的观察者
- * @param {String} getterName
- * @param {Number} valueId
+ * @param {String} getterName  [required]
+ * @param {Number} valueId  [required]
  */
 function addStateValueWatcher(getterName, valueId) {
   if (!stateObserverList[valueId]) {
@@ -264,7 +263,8 @@ function handleActions(actions, branch, branchActions) {
  * @description 创建actions的函数
  * 此actions函数仅是由模块文件中actions字段产生的函数包装函数。
  * 并不是redux中的action
- * @returns {Function}
+ * @param {Function} fn [required] 需要包装的函数
+ * @returns {Function} action函数
  */
 function createAction(fn) {
   return function (...args) {
@@ -344,7 +344,7 @@ function stateChanged(key, branch) {
 /**
  * @private
  * @description 处理getter监控属性，将对象形式转为数组形式
- * @param {Object} list
+ * @param {Object} list  [required]
  */
 function handleMapGetterObj(list = {}) {
   return Object.entries(list)
@@ -371,8 +371,8 @@ function handleMapGetterObj(list = {}) {
 /**
  * @private
  * @description 处理getter监控属性，将数组形式转换为对象形式
- * @param {Array} list
- * @param {Boolean} getValueNow
+ * @param {Array} list  [required]
+ * @param {Boolean} getValueNow  [optional]
  * @returns {Object}
  */
 function handleMapGetterAry(list = [], getValueNow = true) {
@@ -397,7 +397,7 @@ function handleMapGetterAry(list = [], getValueNow = true) {
  * @public
  *
  * @description 创建一个store实例
- * @param {Object} opt 设置
+ * @param {Object} opt [required] 设置
  * @returns {Object} store实例
  */
 function createStore(opt = {}) {
@@ -460,7 +460,7 @@ export function mapActions(list) {
 /**
  * @public
  * @description 将需要的getter析出
- * @param { Object | Array<Object|String> } list
+ * @param { Object | Array<Object|String> } list [required]
  * @returns {Object}
  */
 export function mapGetters(list = [], getValueNow = true) {
@@ -538,8 +538,8 @@ export default {
   /**
    * @internal
    * @description 解析原始声明式对象
-   * @param {Object} data 原始声明式对象
-   * @param {Number} be_nodeType 节点类型
+   * @param {Object} data [required] 原始声明式对象
+   * @param {Number} be_nodeType [required] 节点类型
    */
   originParse(data, be_nodeType) {
     // 针对component内部机制，将observed放入一个函数闭包内返回。
@@ -561,8 +561,8 @@ export default {
   /**
    * @internal
    * @description 解析宿主的配置，并附加功能以及预处理部分功能
-   * @param {Object} master 宿主，即小程序实例对象
-   * @param {Object} vmp 代理对象
+   * @param {Object} master [required] 宿主，即小程序实例对象
+   * @param {Object} vmp [required] 代理对象
    */
   parse(master, vmp) {
     // 针对component内部机制，将be_observed()返回的oberved挂载在master上
@@ -579,7 +579,8 @@ export default {
   /**
    * @internal
    * @description 包装器，用于为VMP实例添加功能
-   * @param {Object} vmp VMP的实例,
+   * @param {Object} master [required] 宿主，即小程序实例对象
+   * @param {Object} vmp [required] VMP的实例,
    * 在方法使用参数vmp前，begoina已经对vmp进行了验证。
    * 所以不必再重复验证。
    */
@@ -632,6 +633,8 @@ export default {
    * @internal
    * @description 清除绑定在vmp上的
    * 装饰器或者属性
+   * @param {Object} master [required] 宿主，即小程序实例对象
+   * @param {Object} vmp [required] VMP的实例,
    */
   wash(master, vmp) {
     WM.removeAllByVMP(vmp);
@@ -657,3 +660,4 @@ export default {
    */
   createStore,
 };
+//===================================================

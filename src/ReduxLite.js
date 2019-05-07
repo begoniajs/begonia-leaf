@@ -1,11 +1,13 @@
+//==================================================
 /**
- * 简版Redux
+ * @description 简版Redux
  * @author Brave Chan on 2017.7.9
+ * @version 1.0.0
  */
-//=======================================
+//==================================================
 let store;
 let cbList = [];
-//========================================
+//==================================================
 /**
  *
  * Store类
@@ -22,7 +24,7 @@ class Store {
    * @param type {String} action类型
    * @param data {Object} action数据
    */
-  dispatch = (type = '', payload = {}) => {
+  dispatch(type = '', payload = {}) {
     this._state = this._reducer(this._state, { type, payload });
     trigger();
   }
@@ -33,7 +35,10 @@ class Store {
   get state() {
     return this._state;
   }
-
+  /**
+   * @public
+   * @description 返回根级state
+   */
   get rootState() {
     return this._state.root;
   }
@@ -72,10 +77,13 @@ function trigger() {
   });
 }
 
-//==============================================
+//==================================================
 /**
  * @public
  * @description 创建store实例
+ * @param {Function} reducer [required] 根级reducer函数
+ * @param {Object} state [required] state状态对象
+ * @returns {Store} Store实例
  */
 function createStore(reducer, state = {}) {
   if (store) {
@@ -93,6 +101,8 @@ function createStore(reducer, state = {}) {
 /**
  * @public
  * @description 将多个reducer组成的reducer树合成为一个根级reducer函数
+ * @param {Object} reducers [required] 各个分支的reducer函数集合对象
+ * @returns {Function} 根级reducer函数
  */
 function combineReducers(reducers) {
   if (!reducers) {
@@ -120,10 +130,8 @@ function combineReducers(reducers) {
 }
 
 //==================================================
-export default {
-  createStore,
-  combineReducers,
-};
+export default { createStore, combineReducers, };
+//==================================================
 
 
 
