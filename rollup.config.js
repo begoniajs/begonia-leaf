@@ -5,13 +5,13 @@ import visualizer from 'rollup-plugin-visualizer';
 export default {
   input: './src/bex.js',
   output: {
-    file: './miniprogram_dist/bex.js',
+    file: './dist/index.js',
     format: 'es',
     banner: `// bex.js v1.0.0 Brave Chan`
   },
   plugins: [
     clear({
-      targets: ['miniprogram_dist']
+      targets: ['dist']
     }),
     sizeSnapshot({
       snapshotPath: './analyze/.size-snapshot.json'

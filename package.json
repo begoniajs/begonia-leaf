@@ -2,7 +2,8 @@
   "name": "beleaf",
   "version": "1.0.0",
   "description": "A library for begonia miniprogram project state management.",
-  "main": "bex.js",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "npx rollup -c",
     "test": "test"
@@ -13,9 +14,11 @@
   },
   "keywords": [
     "begonia",
+    "beleaf",
     "miniprogram",
     "redux-lite"
   ],
+  "miniprogram": "dist",
   "author": "Brave Chan",
   "license": "MIT",
   "bugs": {

@@ -24,8 +24,8 @@ class Store {
    * @param type {String} action类型
    * @param data {Object} action数据
    */
-  dispatch(type = '', payload = {}) {
-    this._state = this._reducer(this._state, { type, payload });
+  dispatch(type = '', data = {}) {
+    this._state = this._reducer(this._state, { type, payload: data });
     trigger();
   }
   /**
