@@ -1,7 +1,7 @@
 //===================================================
 /**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能
- * @version 1.0.0
+ * @version 1.0.1
  * @author Brave Chan on 2019.5
  */
 //===================================================
@@ -268,7 +268,13 @@ function handleActions(actions, branch, branchActions) {
  */
 function createAction(fn) {
   return function (...args) {
-    return fn.apply(this, [_store, ...args]);
+    return fn.apply(this, [
+      Object.assign({}, _store, { 
+        dispatch: _store.dispatch.bind(_store),
+        subscribe: _store.subscribe.bind(_store)
+      }),
+      ...args
+    ]);
   }
 }
 // =============================================================
@@ -507,7 +513,7 @@ function unwatch(prop) {
 //=======================================================
 /**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能
- * @version 1.0.0
+ * @version 1.0.1
  * @author Brave Chan on 2019.5
  */
 export default {

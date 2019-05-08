@@ -2,7 +2,7 @@
 /**
  * @description 简版Redux
  * @author Brave Chan on 2017.7.9
- * @version 1.0.0
+ * @version 1.0.1
  */
 //==================================================
 let store;
