@@ -93,3 +93,5 @@ export namespace bex {
    */
   export const actions: object;
 }
+
+export default bex;

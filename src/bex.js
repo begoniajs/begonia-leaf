@@ -1,7 +1,7 @@
 //===================================================
 /**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能
- * @version 1.0.1
+ * @version 1.0.2
  * @author Brave Chan on 2019.5
  */
 //===================================================
@@ -513,7 +513,7 @@ function unwatch(prop) {
 //=======================================================
 /**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能
- * @version 1.0.1
+ * @version 1.0.2
  * @author Brave Chan on 2019.5
  */
 export default {
