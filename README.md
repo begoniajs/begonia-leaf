@@ -40,7 +40,7 @@ View---ViewModel--->action--->dispatch
 
 这就是`beleaf`的内部结构：
 
-- bex.js  bex模块的入口，以及主要api提供者，不仅提供装载到BE上的方法，而且会将特殊的方法装饰到小程序实例和vmp实例上。
+- bex.js  beleaf模块的入口，以及主要api提供者，不仅提供装载到begonia上的方法，而且会将特殊的方法装饰到小程序实例和vmp实例上。
 - ReduxLite.js 简版的redux实现
 - WatchManager.js 通过对state变化的监控，提供订阅state某个分支变化的api，并为vmp实例提供类似观察者处理函数的功能，可以进行再加工。
 
@@ -53,6 +53,9 @@ View---ViewModel--->action--->dispatch
 ```
 $ npm install beleaf
 ```
+
+接下来，我们需要做的，就是使用微信开发者工具中的工具->构建npm命令，对已经安装好的npm模块进行构建。
+关于如何使用微信开发者工具构建npm模块，你可以参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
 ### 2. 建立store目录和`store.js`文件
 
@@ -116,8 +119,7 @@ const store = bex.createStore({
 export default store;
 
 ```
-由于在上面例子中我们还导入了一个`user.js`作为state分支，下面我们来创建它:
-
+由于在上面例子中我们还导入了一个`user.js`作为state分支，下面我们来创建它。
 这里以用户信息分支`user.js`为例，了解一下如何创建一个state分支：
 
 ```js
@@ -211,7 +213,7 @@ Page(
         console.log('In vh page, get the userId----->', value);
       },
       // 设置不获取userId的初始值，只有当userId真正产生变化的时候
-      // 才会得到响应
+      // 才会得到响应，这项设置是可选的
       initGet: false
     }
   },
