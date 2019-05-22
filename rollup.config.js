@@ -7,7 +7,7 @@ export default {
   output: {
     file: './dist/index.js',
     format: 'es',
-    banner: `// bex.js v1.0.2 Brave Chan`
+    banner: `// bex.js v1.0.4 Brave Chan`
   },
   plugins: [
     clear({
