@@ -42,16 +42,16 @@ declare class Store {
  *
  * @description 将需要的action析出
  *
- * @param {object[]} list [required] 需要的action函数名称集合
+ * @param {string[]} list [required] 需要的action函数名称集合
  * @return {object} 由选择的action组成的集合
  */
-export function mapActions(list: object[]): object;
+export function mapActions(list: string[]): object;
 /**
  * @public
  * @description 将需要的getter析出
- * @param { object | Array<Object|String> } list [required]
+ * @param { object | Array<object | string> } list [required]
  * @param {boolan} getValueNow [optional] 析出的属性是否全部要获取初始值，默认为true
- * @returns {object | Array<Object|String>}
+ * @returns {object |Array<object | string>}
  */
 export function mapGetters(list: object | Array<object | string>, getValueNow?: boolean): object | Array<object | string>;
 
