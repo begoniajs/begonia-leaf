@@ -1,6 +1,6 @@
 {
   "name": "beleaf",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A library for begonia miniprogram project state management.",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
