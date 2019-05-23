@@ -1,3 +1,44 @@
+export interface IStore {
+  /**
+   * @public
+   * @description 派发一个action
+   * @param type {string} [required]  action类型
+   * @param data {any} [optional]  action数据
+   */
+  dispatch(type: string, data?: object): void;
+  /**
+   * @public
+   * @description 订阅state变化
+   *
+   * @param listener {Function} [required] 监听变化的回调函数
+   *
+   * @return {Function} 取消订阅的方法
+   */
+  subscribe(listener: () => void): () => void;
+  /**
+   * @public
+   * @description 返回store中的state对象或state树
+   */
+  state: any;
+  /**
+   * @public
+   * @description 返回根级state
+   */
+  rootState: any;
+  /**
+   * @public
+   * @description 返回注册的getters
+   * @returns {any}
+   */
+  readonly getters: any;
+  /**
+   * @public
+   * @description 返回全部的actions函数
+   * @returns {any}
+   */
+  readonly actions: any;
+}
+
 /**
  * @description Store类
  * 每个redux应用都只包含一个Store实例和一个reducer
@@ -14,29 +55,42 @@ declare class Store {
    * @public
    * @description 派发一个action
    * @param type {string} [required]  action类型
-   * @param data {object} [optional]  action数据
+   * @param data {any} [optional]  action数据
    */
-  dispatch(type: string, payload?: object): void
+  dispatch(type: string, data?: any): void
   /**
    * @public
    * @description 返回store中的state对象或state树
    */
-  state: object;
+  state: any;
   /**
    * @public
    * @description 返回根级state
    */
-  rootState:object;
+  rootState: any;
   /**
    * @public
    * @description 订阅state变化
    *
-   * @param listener {Function} [required] 监听变化的回调函数
+   * @param listener {() => void} [required] 监听变化的回调函数
    *
-   * @return {Function} 取消订阅的方法
+   * @return {() => void} 取消订阅的方法
    */
-  subscribe(listener: () => void): () => void
+  subscribe(listener: () => void): () => void;
+  /**
+   * @public
+   * @description 返回注册的getters
+   * @returns {any}
+   */
+  readonly getters: any;
+  /**
+   * @public
+   * @description 返回全部的actions函数
+   * @returns {any}
+   */
+  readonly actions: any;
 }
+
 /**
  * @public
  *
@@ -45,15 +99,15 @@ declare class Store {
  * @param {string[]} list [required] 需要的action函数名称集合
  * @return {object} 由选择的action组成的集合
  */
-export function mapActions(list: string[]): object;
+export function mapActions(list: string[]): any;
 /**
  * @public
  * @description 将需要的getter析出
  * @param { object | Array<object | string> } list [required]
  * @param {boolan} getValueNow [optional] 析出的属性是否全部要获取初始值，默认为true
- * @returns {object |Array<object | string>}
+ * @returns {object |Array<any | string>}
  */
-export function mapGetters(list: object | Array<object | string>, getValueNow?: boolean): object | Array<object | string>;
+export function mapGetters(list: object | Array<object | string>, getValueNow?: boolean): any | Array<any | string>;
 
 /**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能
@@ -86,12 +140,12 @@ export namespace bex {
    * @public
    * @description 可以通过getters访问state上设置getter的属性
    */
-  export const getters: object;
+  export const getters: any;
   /**
    * @public
    * @description 可以通过actions访问定义的action函数
    */
-  export const actions: object;
+  export const actions: any;
 }
 
 export default bex;
