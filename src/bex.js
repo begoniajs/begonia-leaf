@@ -1,8 +1,8 @@
 //===================================================
 /**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能
- * @version 1.0.2
- * @author Brave Chan on 2019.5
+ * @version 1.0.7
+ * @author Brave Chan on 2019.6
  */
 //===================================================
 import Redux from './ReduxLite';
@@ -268,13 +268,19 @@ function handleActions(actions, branch, branchActions) {
  */
 function createAction(fn) {
   return function (...args) {
-    return fn.apply(this, [
-      Object.assign({}, _store, { 
-        dispatch: _store.dispatch.bind(_store),
-        subscribe: _store.subscribe.bind(_store)
-      }),
-      ...args
-    ]);
+    return fn.apply(
+      this,
+      [
+        {
+          dispatch: _store.dispatch.bind(_store),
+          actions: _store.actions,
+          getters: _store.getters,
+          state: _store.state,
+          rootState: _store.rootState
+        },
+        ...args
+      ]
+    );
   }
 }
 // =============================================================

@@ -191,6 +191,20 @@ export default {
 
 ```
 
+请注意，在上面的例子中的`setupLogin()`方法中，我们对参数进行了解构，在函数的内部声明了`dispatch`。
+其实方法的第一个参数是一个对象，它包含了一些与store映射的属性和方法，但它并不是store对象本身。
+对象的结构如下：
+
+```js
+{
+  dispatch: (type, payload) => {},
+  actions: object,
+  getters: object,
+  state: object,
+  rootState: object
+}
+```
+
 ### 3. 在小程序页面和组件实例中，订阅关注的state分支属性以及发出acton
 
 当有关store和user分支都准备好后，我们来看如何在小程序的页面和组件实例中使用状态管理。
