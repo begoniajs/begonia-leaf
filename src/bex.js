@@ -588,7 +588,9 @@ export default {
     }
     let observed = master.observed;
     if (!observed) {
-      console.warn('can not find the master.observed', master);
+      if (_debug) {
+        console.warn('can not find the master.observed', master);
+      }
       return;
     }
     watch.apply(vmp, [Array.isArray(observed) ? observed : handleMapGetterObj(observed)]);
