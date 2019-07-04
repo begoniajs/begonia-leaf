@@ -1,7 +1,7 @@
 //===================================================
 /**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能
- * @version 1.0.7
+ * @version 1.0.9
  * @author Brave Chan on 2019.6
  */
 //===================================================
@@ -358,11 +358,20 @@ function stateChanged(key, branch) {
  * @description 处理getter监控属性，将对象形式转为数组形式
  * @param {Object} list  [required]
  */
-function handleMapGetterObj(list = {}) {
+function handleMapGetterObj(list = {}, store) {
   return Object.entries(list)
     .map(function (item) {
       let key = item[0];
       let value = item[1];
+
+      if (store && store.getters && typeof store.getters[key] !== 'function') {
+        console.error(`
+          Getters does not have the getter named ${key},
+          so we can not observe the ${key}'s value change.
+          Please check.
+        `);
+      }
+
       if (key === value && typeof value === 'string') {
         return value;
       }
@@ -593,7 +602,7 @@ export default {
       }
       return;
     }
-    watch.apply(vmp, [Array.isArray(observed) ? observed : handleMapGetterObj(observed)]);
+    watch.apply(vmp, [Array.isArray(observed) ? observed : handleMapGetterObj(observed, _store)]);
   },
   /**
    * @internal
