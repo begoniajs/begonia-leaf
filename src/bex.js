@@ -253,7 +253,7 @@ function handleActions(actions, branch, branchActions) {
     return actions;
   }
   for (let value of keys) {
-    actions[value] = createAction(branchActions[value]);
+    actions[value] = createAction(branchActions[value], branch);
   }
   return actions;
 }
@@ -264,9 +264,10 @@ function handleActions(actions, branch, branchActions) {
  * 此actions函数仅是由模块文件中actions字段产生的函数包装函数。
  * 并不是redux中的action
  * @param {Function} fn [required] 需要包装的函数
+ * @param { string } branch [required] state分支名
  * @returns {Function} action函数
  */
-function createAction(fn) {
+function createAction(fn, branch) {
   return function (...args) {
     return fn.apply(
       this,
@@ -275,7 +276,7 @@ function createAction(fn) {
           dispatch: _store.dispatch.bind(_store),
           actions: _store.actions,
           getters: _store.getters,
-          state: _store.state,
+          state: _store.state[branch],
           rootState: _store.rootState
         },
         ...args
