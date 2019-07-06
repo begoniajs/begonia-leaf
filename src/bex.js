@@ -365,12 +365,10 @@ function handleMapGetterObj(list = {}, store) {
       let key = item[0];
       let value = item[1];
 
-      if (store && store.getters && typeof store.getters[key] !== 'function') {
-        console.error(`
-          Getters does not have the getter named ${key},
+      if (store && store.getters && (typeof store.getters[key] === void 0)) {
+        console.error(`Getters does not have the getter named ${key},
           so we can not observe the ${key}'s value change.
-          Please check.
-        `);
+          Please check.`);
       }
 
       if (key === value && typeof value === 'string') {
