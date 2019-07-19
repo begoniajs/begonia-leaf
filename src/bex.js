@@ -487,7 +487,7 @@ export function mapGetters(list = [], getValueNow = true) {
   return Array.isArray(list) ? handleMapGetterAry(list, getValueNow) : list;
 }
 
-export const getters = _store.getter;
+export const getters = _store.getters;
 
 export const actions = _store.actions;
 
