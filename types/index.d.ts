@@ -110,6 +110,24 @@ export function mapActions(list: string[]): any;
 export function mapGetters(list: object | Array<object | string>, getValueNow?: boolean): any | Array<any | string>;
 
 /**
+ * @public
+ * @description getters集合
+ */
+export const getters:any;
+
+/**
+ * @public
+ * @description actions集合
+ */
+export const actions:any;
+
+/**
+ * @public
+ * @description bex创建出的store单例
+ */
+export const store:IStore;
+
+/**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能
  * @version 1.0.0
  * @author Brave Chan on 2019.5
