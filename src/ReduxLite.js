@@ -37,13 +37,6 @@ class Store {
   }
   /**
    * @public
-   * @description 返回根级state
-   */
-  get rootState() {
-    return this._state.root;
-  }
-  /**
-   * @public
    * @description 订阅state变化
    *
    * @param listener {Function} [required] 监听变化的回调函数

@@ -22,11 +22,6 @@ export interface IStore {
   state: any;
   /**
    * @public
-   * @description 返回根级state
-   */
-  rootState: any;
-  /**
-   * @public
    * @description 返回注册的getters
    * @returns {any}
    */
@@ -63,11 +58,6 @@ declare class Store {
    * @description 返回store中的state对象或state树
    */
   state: any;
-  /**
-   * @public
-   * @description 返回根级state
-   */
-  rootState: any;
   /**
    * @public
    * @description 订阅state变化
@@ -108,24 +98,6 @@ export function mapActions(list: string[]): any;
  * @returns {object |Array<any | string>}
  */
 export function mapGetters(list: object | Array<object | string>, getValueNow?: boolean): any | Array<any | string>;
-
-/**
- * @public
- * @description getters集合
- */
-export const getters:any;
-
-/**
- * @public
- * @description actions集合
- */
-export const actions:any;
-
-/**
- * @public
- * @description bex创建出的store单例
- */
-export const store:IStore;
 
 /**
  * @description begoina redux-lite (bex) 提供bex的入口和基本功能

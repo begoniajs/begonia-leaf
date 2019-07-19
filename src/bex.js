@@ -277,7 +277,7 @@ function createAction(fn, branch) {
           actions: _store.actions,
           getters: _store.getters,
           state: _store.state[branch],
-          rootState: _store.rootState
+          root: _store.state
         },
         ...args
       ]
@@ -486,12 +486,6 @@ export function mapActions(list) {
 export function mapGetters(list = [], getValueNow = true) {
   return Array.isArray(list) ? handleMapGetterAry(list, getValueNow) : list;
 }
-
-export const getters = _store.getters;
-
-export const actions = _store.actions;
-
-export const store = _store;
 
 //=========================================================
 /**

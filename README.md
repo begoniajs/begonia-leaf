@@ -200,8 +200,8 @@ export default {
   dispatch: (type, payload) => {},
   actions: object,
   getters: object,
-  state: object,
-  rootState: object
+  state: object, // 根级state中当前分支下的state，相当于store.state[branch]
+  root: object // 根级state，相当于store.state
 }
 ```
 
